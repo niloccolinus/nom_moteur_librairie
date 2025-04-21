@@ -12,10 +12,10 @@ class Matrix_2x2:
 		else : 
 			raise Error('{matrix2} is not a matrix')
 
-	def prod_r (self, k):
+	def prod_r (self, r):
 		for i in range(0,2):
 			for j in range(0,2):
-				self.matrix[i][j] = self.matrix[i][j] * k
+				self.matrix[i][j] = self.matrix[i][j] * r
 
 	def prod (self,matrix2):
 		if (isinstance(matrix2, Matrix_2x2)):
