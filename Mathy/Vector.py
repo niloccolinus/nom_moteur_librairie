@@ -5,6 +5,7 @@ class Vector_2x2:
     def __init__(self, x: float | int, y: float | int):
         self.x, self.y = x, y
         self.vector = [self.x, self.y]
+        self.norm = (self.x**2 + self.y**2)**0.5
 
     def set_x(self, x: int | float) -> None:
         self.x = x
@@ -17,6 +18,9 @@ class Vector_2x2:
 
     def get_y(self) -> int | float:
         return self.y
+
+    def get_norm(self) -> int | float:
+        return self.norm
 
     def add(self, vector_2):
         if (isinstance(vector_2, Vector_2x2)):
