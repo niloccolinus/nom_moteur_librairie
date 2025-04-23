@@ -1,3 +1,5 @@
+from matrix2x2 import Matrix_2x2
+
 
 class Vector_2x2:
     def __init__(self, x: float | int, y: float | int):
@@ -16,46 +18,45 @@ class Vector_2x2:
     def get_y(self) -> int | float:
         return self.y
 
-    def add(self, vector_2: Vector) -> Vector:
+    def add(self, vector_2):
         if (isinstance(vector_2, Vector_2x2)):
-            result = Vector(0, 0)
+            result = Vector_2x2(0, 0)
             result.set_x(self.x + vector_2.x)
             result.set_y(self.y + vector_2.y)
             return result.vector
         else:
-            raise Error('{vector_2} is not a vector')
+            raise TypeError('{vector_2} is not a vector')
 
-    def substract(self, vector_2: Vector) -> Vector:
+    def substract(self, vector_2):
         if (isinstance(vector_2, Vector_2x2)):
-            result = Vector(0, 0)
+            result = Vector_2x2(0, 0)
             result.set_x(self.x - vector_2.x)
             result.set_y(self.y - vector_2.y)
             return result.vector
         else:
-            raise Error('{vector_2} is not a vector')
+            raise TypeError('{vector_2} is not a vector')
 
-    def multiply_by_scalar(self, factor: float | int) -> Vector:
-        result = Vector(0, 0)
+    def multiply_by_scalar(self, factor: float | int):
+        result = Vector_2x2(0, 0)
         result.set_x(self.x * factor)
         result.set_y(self.y * factor)
         return result.vector
 
-    def scalar_product(self, vector_2: Vector) -> int | float:
+    def scalar_product(self, vector_2) -> int | float:
         if (isinstance(vector_2, Vector_2x2)):
             result = self.x * vector_2.x + self.y * vector_2.y
             return result
         else:
-            raise Error('{vector_2} is not a vector')
+            raise TypeError('{vector_2} is not a vector')
 
-    def multiply_by_square_matrix(self, matrix: Matrix_2x2) -> Vector:
+    def multiply_by_square_matrix(self, matrix: Matrix_2x2):
         if (isinstance(matrix, Matrix_2x2)):
-            result = Vector(0, 0)
+            result = Vector_2x2(0, 0)
             result.set_x(self.x * matrix.x1 + self.y * matrix.x2)
             result.set_y(self.x * matrix.x3 + self.y * matrix.x4)
             return result.vector
         else:
-            raise Error('{matrix} is not a matrix')
+            raise TypeError('{matrix} is not a matrix')
 
     # To do:
     # ajouter méthode changement de base
-    # importer la classe Matrix_2x2 ?
