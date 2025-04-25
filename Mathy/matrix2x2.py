@@ -32,3 +32,10 @@ class Matrix_2x2:
             return Matrix_2x2(x1, x2, x3, x4)
         else:
             raise TypeError(f"{matrix2} is not a Matrix_2x2")
+
+    def determinant(self) -> float:
+	    a = self.matrix[0][0]
+	    b = self.matrix[0][1]
+	    c = self.matrix[1][0]
+	    d = self.matrix[1][1]
+	    return a * d - b * c
