@@ -43,5 +43,9 @@ class Vector2:
         else:
             raise TypeError(f"{matrix} is not a Matrix2x2")
 
-    # To do:
-    # ajouter méthode changement de base
+    def change_basis(self, base_v1: 'Vector2', base_v2: 'Vector2') -> 'Vector2':
+        base_matrix = Matrix2x2(
+            base_v1.x, base_v2.x,
+            base_v1.y, base_v2.y
+        )
+        return base_matrix.solve_system(self)
