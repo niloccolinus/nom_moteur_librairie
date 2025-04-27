@@ -39,3 +39,15 @@ class Matrix2x2:
 	    c = self.matrix[1][0]
 	    d = self.matrix[1][1]
 	    return a * d - b * c
+
+	def solve_system(self, b: Vector2) -> Vector2:
+        det = self.determinant()
+        a = self.matrix
+
+        det_x = b.x * a[1][1] - b.y * a[0][1]
+        det_y = a[0][0] * b.y - a[1][0] * b.x
+
+        x = det_x / det
+        y = det_y / det
+
+        return Vector2(x, y)
