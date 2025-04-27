@@ -3,64 +3,45 @@ from matrix2x2 import Matrix2x2
 
 class Vector2:
     def __init__(self, x: float | int, y: float | int):
-        self.x, self.y = x, y
-        self.vector = [self.x, self.y]
-        self.norm = (self.x**2 + self.y**2)**0.5
-
-    def set_x(self, x: int | float) -> None:
         self.x = x
-
-    def set_y(self, y: int | float) -> None:
         self.y = y
 
-    def get_x(self) -> int | float:
-        return self.x
+    @property
+    def norm(self) -> float:
+        return (self.x**2 + self.y**2)**0.5
 
-    def get_y(self) -> int | float:
-        return self.y
+    def __repr__(self):
+        return f"Vector2({self.x}, {self.y})"
 
-    def get_norm(self) -> int | float:
-        return self.norm
-
-    def add(self, vector_2):
-        if (isinstance(vector_2, Vector2)):
-            result = Vector2(0, 0)
-            result.set_x(self.x + vector_2.x)
-            result.set_y(self.y + vector_2.y)
-            return result.vector
+    def add(self, other: 'Vector2') -> 'Vector2':
+        if isinstance(other, Vector2):
+            return Vector2(self.x + other.x, self.y + other.y)
         else:
-            raise TypeError('{vector_2} is not a Vector2')
+            raise TypeError(f"{other} is not a Vector2")
 
-    def substract(self, vector_2):
-        if (isinstance(vector_2, Vector2)):
-            result = Vector2(0, 0)
-            result.set_x(self.x - vector_2.x)
-            result.set_y(self.y - vector_2.y)
-            return result.vector
+    def subtract(self, other: 'Vector2') -> 'Vector2':
+        if isinstance(other, Vector2):
+            return Vector2(self.x - other.x, self.y - other.y)
         else:
-            raise TypeError('{vector_2} is not a Vector2')
+            raise TypeError(f"{other} is not a Vector2")
 
-    def multiply_by_scalar(self, factor: float | int):
-        result = Vector2(0, 0)
-        result.set_x(self.x * factor)
-        result.set_y(self.y * factor)
-        return result.vector
-
-    def scalar_product(self, vector_2) -> int | float:
-        if (isinstance(vector_2, Vector2)):
-            result = self.x * vector_2.x + self.y * vector_2.y
-            return result
+    def scalar_product(self, other: 'Vector2') -> float:
+        if isinstance(other, Vector2):
+            return self.x * other.x + self.y * other.y
         else:
-            raise TypeError('{vector_2} is not a Vector2')
+            raise TypeError(f"{other} is not a Vector2")
 
-    def multiply_by_square_matrix(self, matrix: Matrix2x2):
-        if (isinstance(matrix, Matrix2x2)):
-            result = Vector2(0, 0)
-            result.set_x(self.x * matrix.x1 + self.y * matrix.x2)
-            result.set_y(self.x * matrix.x3 + self.y * matrix.x4)
-            return result.vector
+    def multiply_by_scalar(self, factor: float | int) -> 'Vector2':
+        return Vector2(self.x * factor, self.y * factor)
+
+    def multiply_by_matrix(self, matrix: Matrix2x2) -> 'Vector2':
+        if isinstance(matrix, Matrix2x2):
+            a = matrix.matrix
+            new_x = a[0][0] * self.x + a[0][1] * self.y
+            new_y = a[1][0] * self.x + a[1][1] * self.y
+            return Vector2(new_x, new_y)
         else:
-            raise TypeError('{matrix} is not a Matrix2x2')
+            raise TypeError(f"{matrix} is not a Matrix2x2")
 
     # To do:
     # ajouter méthode changement de base
