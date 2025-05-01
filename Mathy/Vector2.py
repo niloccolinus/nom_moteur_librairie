@@ -1,5 +1,6 @@
 from matrix2x2 import Matrix2x2
 
+
 class Vector2:
     def __init__(self, x: float | int, y: float | int):
         # Initialize a 2D vector with the given x and y components
