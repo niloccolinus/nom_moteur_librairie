@@ -1,3 +1,6 @@
+from Vector2 import Vector2
+
+
 class Matrix2x2:
     def __init__(self, x1: float | int, x2: float | int, x3: float | int, x4: float | int):
         # Initialize a 2x2 matrix with the given values
