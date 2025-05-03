@@ -1,5 +1,3 @@
-from matrix2x2 import Matrix2x2
-
 class Vector2:
     def __init__(self, x: float | int, y: float | int):
         # Initialize a 2D vector with the given x and y components
@@ -40,8 +38,9 @@ class Vector2:
         # Multiply the vector by a scalar and return the resulting Vector2
         return Vector2(self.x * factor, self.y * factor)
 
-    def multiply_by_matrix(self, matrix: Matrix2x2) -> 'Vector2':
+    def multiply_by_matrix(self, matrix: 'Matrix2x2') -> 'Vector2':
         # Multiply the vector by a 2x2 matrix and return the resulting Vector2
+        from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
         if isinstance(matrix, Matrix2x2):
             a = matrix.matrix
             new_x = a[0][0] * self.x + a[0][1] * self.y
@@ -52,6 +51,7 @@ class Vector2:
 
     def change_basis(self, base_v1: 'Vector2', base_v2: 'Vector2') -> 'Vector2':
         # Change the basis of the vector from the standard basis to a new basis
+        from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
         base_matrix = Matrix2x2(
             base_v1.x, base_v2.x,
             base_v1.y, base_v2.y

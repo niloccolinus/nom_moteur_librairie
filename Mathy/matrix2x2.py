@@ -51,8 +51,9 @@ class Matrix2x2:
         # The determinant of a 2x2 matrix is calculated as (ad - bc)
         return a * d - b * c
 
-    def solve_system(self, b: Vector2) -> Vector2:
+    def solve_system(self, b: 'Vector2') -> 'Vector2':
         # Solve a system of linear equations Ax = b, where A is the matrix and b is the vector
+        from geometry_engine_librairie.Mathy.vector2 import Vector2
         det = self.determinant()
         a = self.matrix
         # Calculate the determinant of the system for the x coordinate
