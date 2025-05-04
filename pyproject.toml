@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Geometry Engine Library"
+name = "geometry_engine_librarie"
 version = "0.0.0"
 description = "Bibliothèque d'objets pour un moteur de géométrie"
 authors = [
