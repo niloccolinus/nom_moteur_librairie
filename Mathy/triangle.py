@@ -26,3 +26,18 @@ class Triangle:
         b = distance(self.p2, self.p3)
         c = distance(self.p1, self.p3)
         return a, b, c
+
+    def perimeter(self) -> float:
+        """
+        Return the perimeter of the triangle.
+        """
+        a, b, c = self.side_lengths()
+        return a + b + c
+
+    def area(self) -> float:
+        """
+        Return the area of the triangle using Heron's formula.
+        """
+        a, b, c = self.side_lengths()
+        s = (a + b + c) / 2  # semi-perimeter
+        return math.sqrt(s * (s - a) * (s - b) * (s - c))
