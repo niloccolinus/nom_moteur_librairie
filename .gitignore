@@ -1,1 +1,4 @@
 *.sublime-workspace
+env/
+*.egg-info
+build/
