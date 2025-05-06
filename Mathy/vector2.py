@@ -58,3 +58,12 @@ class Vector2:
         )
         # Solve the system of equations to get the vector in the new basis
         return base_matrix.solve_system(self)
+
+    def normalize(self) -> 'Vector2':
+        """
+        Normalize the vector to have a length of 1 while preserving its direction.
+        """
+        n = self.norm
+        if n == 0:
+            raise ValueError("Cannot normalize a zero vector.")
+        return Vector2(self.x / n, self.y / n)
