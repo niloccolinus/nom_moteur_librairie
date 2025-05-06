@@ -41,3 +41,11 @@ class Triangle:
         a, b, c = self.side_lengths()
         s = (a + b + c) / 2  # semi-perimeter
         return math.sqrt(s * (s - a) * (s - b) * (s - c))
+
+    def right_angled(self) -> bool:
+        """
+        Check if the triangle is a right triangle using the Pythagorean theorem.
+        """
+        a, b, c = sorted(self.side_lengths()) # sort to make sure the hypothenuse is last
+        return a ** 2 + b ** 2 == c ** 2
+    
