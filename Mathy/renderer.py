@@ -1,9 +1,6 @@
-"""
-This script defines the class that will help you for
-the rendering part of the engine.
-"""
+"""This script defines the renderer class."""
 
-import sys
+# import sys
 
 import pygame
 
@@ -139,6 +136,7 @@ class Renderer:
     def handle_events(self):
         """
         Handle pygame events to allow for proper window closure.
+
         Instead of exiting immediately, this sets a flag to stop the main loop.
         """
         for event in pygame.event.get():
