@@ -1,8 +1,5 @@
 """Defines a two-vector class."""
 
-from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
-
-
 class Vector2:
     """A class to represent a bivector."""
 
