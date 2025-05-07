@@ -49,7 +49,7 @@ class Triangle:
         a, b, c = sorted(self.side_lengths()) # sort to make sure the hypothenuse is last
         return a ** 2 + b ** 2 == c ** 2
     
-    def get_vertices(self) -> Tuple[Tuple[float, float], Tuple[float, float], Tuple[float, float]]:
+    def get_vertices(self) -> tuple[tuple[float, float], tuple[float, float], tuple[float, float]]:
         """
         Return the three vertices of the triangle.
         """
