@@ -75,7 +75,7 @@ def test_multiply_by_matrix():
         Vector2(3, -4).multiply_by_matrix(Vector2(2, 3))
 
 
- def test_change_basis():
+def test_change_basis():
     # Change basis
     assert Vector2(2, 3).change_basis(Vector2(1, 1), Vector2(1, -1)) == Vector2(3, 2)
 
