@@ -14,6 +14,13 @@ class Vector2:
         """Calculate the norm of the vector (accessible as a property)."""
         return (self.x**2 + self.y**2)**0.5
 
+    def __eq__(self, other: 'Vector2') -> bool:
+        """Check if two vectors are equal"""
+        if isinstance(other, Vector2):
+            return (self.x == other.x) and (self.y == other.y)
+        else:
+            raise TypeError(f"{other} is not a Vector2")
+
     def __repr__(self):
         """Return a string representation of the vector."""
         return f"Vector2({self.x}, {self.y})"
