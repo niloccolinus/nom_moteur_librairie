@@ -1,5 +1,6 @@
 """Defines a two-vector class."""
 
+
 class Vector2:
     """A class to represent a bivector."""
 
@@ -46,7 +47,7 @@ class Vector2:
         """Multiply the vector by a scalar and return the resulting Vector2."""
         return Vector2(self.x * factor, self.y * factor)
 
-    def multiply_by_matrix(self, matrix: 'Matrix2x2') -> 'Vector2':
+    def multiply_by_matrix(self, matrix) -> 'Vector2':
         """
         Multiply the vector by a 2x2 matrix.
 
@@ -68,6 +69,7 @@ class Vector2:
 
         Change the vector's basis from the standard basis to a new basis.
         """
+        from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
         base_matrix = Matrix2x2(
             base_v1.x, base_v2.x,
             base_v1.y, base_v2.y
