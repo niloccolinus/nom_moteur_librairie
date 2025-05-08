@@ -16,6 +16,13 @@ def test_norm():
     assert round(Vector2(-2, -4).norm, 2) == 4.47
 
 
+def test_eq():
+    # Compare different vectors
+    assert Vector2(1, 1) != Vector2(1, -1)
+    # Compare same vectors
+    assert Vector2(1, 1) == Vector2(1, 1)
+
+
 def test_repr():
     # Repr vector
     assert Vector2(1, 3).__repr__() == "Vector2(1, 3)"
@@ -85,5 +92,5 @@ def test_normalize():
     # Normalize vector
     assert Vector2(1, 0).normalize() == Vector2(1.0, 0.0)
     # Norm == 0
-    with pytest.raises(ValueError, match=r".* Cannot normalize a zero vector.*"):
+    with pytest.raises(ValueError, match=r"Cannot normalize a zero vector.*"):
         Vector2(0, 0).normalize()
