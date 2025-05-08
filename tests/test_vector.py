@@ -1,23 +1,24 @@
 # Tests for verifying proper Vector functionality
 
+import pytest
 from vector2 import Vector2
 from matrix2x2 import Matrix2x2
 
 
 def test_norm():
     # Norm zero
-    assert norm(Vector2(0, 0)) == 0.0
+    assert Vector2(0, 0).norm == 0.0
 
     # Norm positive coordinates
-    assert round(norm(Vector2(2, 4)), 2) == 4.47
+    assert round(Vector2(2, 4).norm, 2) == 4.47
 
     # Norm negative coordinates
-    assert round(norm(Vector2(-2, -4)), 2) == 4.47
+    assert round(Vector2(-2, -4).norm, 2) == 4.47
 
 
 def test_repr():
     # Repr vector
-    assert __repr__(Vector2(1, 3)) == f"Vector2(1, 3)"
+    assert Vector2(1, 3).__repr__ == f"Vector2(1, 3)"
 
 
 def test_add():
