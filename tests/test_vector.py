@@ -83,7 +83,7 @@ def test_change_basis():
 
 def test_normalize():
     # Normalize vector
-    assert Vector2(1, 0).normalize == Vector2(1, 0)
+    assert Vector2(1, 0).normalize() == Vector2(1.0, 0.0)
     # Norm == 0
     with pytest.raises(ValueError, match=r".* Cannot normalize a zero vector.*"):
-        Vector2(0, 0).normalize
+        Vector2(0, 0).normalize()
