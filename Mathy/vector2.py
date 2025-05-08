@@ -53,7 +53,7 @@ class Vector2:
 
         Return the resulting Vector2.
         """
-        from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
+        from Mathy.matrix2x2 import Matrix2x2
         if isinstance(matrix, Matrix2x2):
             a = matrix.matrix
             new_x = a[0][0] * self.x + a[0][1] * self.y
@@ -69,7 +69,7 @@ class Vector2:
 
         Change the vector's basis from the standard basis to a new basis.
         """
-        from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
+        from Mathy.matrix2x2 import Matrix2x2
         base_matrix = Matrix2x2(
             base_v1.x, base_v2.x,
             base_v1.y, base_v2.y
