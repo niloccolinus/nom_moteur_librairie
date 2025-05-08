@@ -78,7 +78,7 @@ def test_multiply_by_matrix():
 
 def test_change_basis():
     # Change basis
-    assert Vector2(2, 3).change_basis(Vector2(1, 1), Vector2(1, -1)) == Vector2(3, 2)
+    assert Vector2(2, 3).change_basis(Vector2(1, 1), Vector2(1, -1)) == Vector2(2.5, -0.5)
 
 
 def test_normalize():
