@@ -1,7 +1,5 @@
 """Defines a 2x2 matrix class."""
 
-from vector2 import Vector2
-
 
 class Matrix2x2:
     """A class to represent a 2 by 2 matrix."""
@@ -62,7 +60,7 @@ class Matrix2x2:
         # The determinant of a 2x2 matrix is calculated as (ad - bc)
         return a * d - b * c
 
-    def solve_system(self, b: 'Vector2') -> 'Vector2':
+    def solve_system(self, b):
         """
         Solve a system of linear equations Ax = b.
 
