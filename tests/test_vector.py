@@ -21,6 +21,9 @@ def test_eq():
     assert Vector2(1, 1) != Vector2(1, -1)
     # Compare same vectors
     assert Vector2(1, 1) == Vector2(1, 1)
+    # Compare a vector with a different type
+    with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
+        Vector2(1, 2) != 5
 
 
 def test_repr():
