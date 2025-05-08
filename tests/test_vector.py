@@ -18,7 +18,7 @@ def test_norm():
 
 def test_repr():
     # Repr vector
-    assert Vector2(1, 3).__repr__ == "Vector2(1, 3)"
+    assert Vector2(1, 3).__repr__() == "Vector2(1, 3)"
 
 
 def test_add():
