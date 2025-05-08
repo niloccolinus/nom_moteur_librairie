@@ -39,7 +39,7 @@ def test_add():
     assert Vector2(1, 2).add(Vector2(3, -4)) == Vector2(4, -2)
 
     # Add floats
-    assert Vector2(0.5, -1.0).add(Vector2(3.5, 5.0)) == Vector2(4.0, -2.0)
+    assert Vector2(0.5, -1.0).add(Vector2(3.5, 5.0)) == Vector2(4.0, 4.0)
 
     # Add wrong type
     with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
@@ -51,7 +51,7 @@ def test_subtract():
     assert Vector2(0, 0).subtract(Vector2(0, 0)) == Vector2(0, 0)
 
     # Subtract ints
-    assert Vector2(1, 2).subtract(Vector2(3, -4)) == Vector2(-3, 6)
+    assert Vector2(1, 2).subtract(Vector2(3, -4)) == Vector2(-2, 6)
 
     # Subtract floats
     assert Vector2(0.5, -1.0).subtract(Vector2(3.5, 5.0)) == Vector2(-3.0, -6.0)
