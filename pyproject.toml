@@ -19,5 +19,6 @@ exclude = ["tests/*"]
 
 [tool.project]
 dependencies = [
-    "pygame"
+    "pygame",
+    "pytest"
 ]
