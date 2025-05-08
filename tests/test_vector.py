@@ -1,8 +1,8 @@
-# Tests for verifying proper Vector functionality
+"""Tests for verifying proper Vector functionality."""
 
 import pytest
-from vector2 import Vector2
-from matrix2x2 import Matrix2x2
+from Mathy.vector2 import Vector2
+from Mathy.matrix2x2 import Matrix2x2
 
 
 def test_norm():
@@ -18,7 +18,7 @@ def test_norm():
 
 def test_repr():
     # Repr vector
-    assert Vector2(1, 3).__repr__ == f"Vector2(1, 3)"
+    assert Vector2(1, 3).__repr__ == "Vector2(1, 3)"
 
 
 def test_add():
