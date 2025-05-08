@@ -52,7 +52,7 @@ class Vector2:
 
         Return the resulting Vector2.
         """
-        from geometry_engine_librairie.Mathy.matrix2x2 import Matrix2x2
+        from Mathy import Matrix2x2
         if isinstance(matrix, Matrix2x2):
             a = matrix.matrix
             new_x = a[0][0] * self.x + a[0][1] * self.y

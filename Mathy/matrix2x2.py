@@ -1,6 +1,6 @@
 """Defines a 2x2 matrix class."""
 
-from vector2 import Vector2
+from Mathy import Vector2
 
 
 class Matrix2x2:
@@ -68,7 +68,7 @@ class Matrix2x2:
 
         A is a matrix and b is a vector.
         """
-        from geometry_engine_librairie.Mathy.vector2 import Vector2
+        from Mathy import Vector2
         det = self.determinant()
         a = self.matrix
         # Calculate the determinant of the system for the x coordinate
