@@ -58,7 +58,8 @@ class Triangle:
         """
         # Sort to make sure the hypothenuse is last
         a, b, c = sorted(self.side_lengths())
-        return a ** 2 + b ** 2 == c ** 2
+        # Use isclose to allow for small floating-point errors
+        return math.isclose(a ** 2 + b ** 2, c ** 2, rel_tol=1e-9)
 
     def get_vertices(
         self
