@@ -73,6 +73,7 @@ class Vector2:
                      base_v2: 'Vector2') -> 'Vector2':
         """
         Implement a change of basis.
+
         Change the vector's basis from the standard basis to a new basis.
         """
         from Mathy import Matrix2x2
