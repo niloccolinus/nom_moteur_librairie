@@ -1,60 +1,99 @@
-# Tests for verifying proper Vector functionality
+"""Tests for verifying proper Vector functionality."""
 
-from vector import Vector
+import pytest
+from Mathy.vector2 import Vector2
+from Mathy.matrix2x2 import Matrix2x2
 
-class TestVector:
-    def add_1(self):
-    	# Standard case
-    	v = Vector([3, 4])
-    	v2 = Vector([4, 2])
-        r = v.add(v2) # The "Add" method needs to return its end result
-        assert r == [7, 6]
 
-    def add_2(self):
-    	# Zeros case
-    	v = Vector([3, 4])
-    	v2 = Vector([0, 0])
-        r = v.add(v2)
-        assert r == v.vector
+def test_norm():
+    # Norm zero
+    assert Vector2(0, 0).norm == 0.0
 
-    def mul_1(self):
-        # Multiplication by int
-        v = Vector([3, 4])
-        f = 2
-        r = v.multiply_by(f) # Same as above
-        assert r == [6, 8]
-    
-    def mul_2(self):
-        # Multiplication by zero
-        v = Vector([3, 4])
-        f = 0
-        r = v.multiply_by(f)
-        assert r == [0, 0]
-    
-    def mul_3(self):
-        # Multiplication by negative number
-        v = Vector([3, 4])
-        f = -2
-        r = v.multiply_by(f)
-        assert r == [-6, -8]
-    
-    def mul_4(self):
-        # Multiplication by float
-        v = Vector([3, 4])
-        f = 2.5
-        r = v.multiply_by(f)
-        assert r == [7.5, 10.0]
+    # Norm positive coordinates
+    assert round(Vector2(2, 4).norm, 2) == 4.47
 
-    def mul_5(self):
-        # Multiplication by negative float
-        v = Vector([3, 4])
-        f = -2.5
-        r = v.multiply_by(f)
-        assert r == [-7.5, -10.0]
+    # Norm negative coordinates
+    assert round(Vector2(-2, -4).norm, 2) == 4.47
 
-    def mul_6(self):
-        # Multiplication by vector
-        v = Vector([3, 4])
-        v2 = Vector([4, 2])
-        r = v.multiply(v2)
-        assert r == [12, 8]
+
+def test_eq():
+    # Compare different vectors
+    assert Vector2(1, 1) != Vector2(1, -1)
+    # Compare same vectors
+    assert Vector2(1, 1) == Vector2(1, 1)
+    # Compare a vector with a different type
+    with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
+        Vector2(1, 2) != 5
+
+
+def test_repr():
+    # Repr vector
+    assert Vector2(1, 3).__repr__() == "Vector2(1, 3)"
+
+
+def test_add():
+    # Add zeros
+    assert Vector2(0, 0).add(Vector2(0, 0)) == Vector2(0, 0)
+
+    # Add ints
+    assert Vector2(1, 2).add(Vector2(3, -4)) == Vector2(4, -2)
+
+    # Add floats
+    assert Vector2(0.5, -1.0).add(Vector2(3.5, 5.0)) == Vector2(4.0, 4.0)
+
+    # Add wrong type
+    with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
+        Vector2(1, 2).add(-4)
+
+
+def test_subtract():
+    # Subtract zeros
+    assert Vector2(0, 0).subtract(Vector2(0, 0)) == Vector2(0, 0)
+
+    # Subtract ints
+    assert Vector2(1, 2).subtract(Vector2(3, -4)) == Vector2(-2, 6)
+
+    # Subtract floats
+    assert Vector2(0.5, -1.0).subtract(Vector2(3.5, 5.0)) == Vector2(-3.0, -6.0)
+
+    # Subtract wrong type
+    with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
+        Vector2(1, 2).subtract(-4)
+
+
+def test_scalar_product():
+    # Scalar product of v1 = [1, 1] and v2 = [1, -1]
+    assert Vector2(1, 1).scalar_product(Vector2(1, -1)) == 0
+    # Use wrong type
+    with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
+        Vector2(1, 1).scalar_product(0)
+
+
+def test_multiply_by_scalar():
+    # Multiply by 0
+    assert Vector2(1, 1).multiply_by_scalar(0) == Vector2(0, 0)
+    # Multiply by int
+    assert Vector2(1, 1).multiply_by_scalar(2) == Vector2(2, 2)
+    # Multiply by float
+    assert Vector2(1, 1).multiply_by_scalar(0.5) == Vector2(0.5, 0.5)
+
+
+def test_multiply_by_matrix():
+    # Multiply by matrix
+    assert Vector2(3, -4).multiply_by_matrix(Matrix2x2(2, 3, 4, -1)) == Vector2(-6, 16)
+    # Multiply by wrong type
+    with pytest.raises(TypeError, match=r".* is not a Matrix2x2.*"):
+        Vector2(3, -4).multiply_by_matrix(Vector2(2, 3))
+
+
+def test_change_basis():
+    # Change basis
+    assert Vector2(2, 3).change_basis(Vector2(1, 1), Vector2(1, -1)) == Vector2(2.5, -0.5)
+
+
+def test_normalize():
+    # Normalize vector
+    assert Vector2(1, 0).normalize() == Vector2(1.0, 0.0)
+    # Norm == 0
+    with pytest.raises(ValueError, match=r"Cannot normalize a zero vector.*"):
+        Vector2(0, 0).normalize()
