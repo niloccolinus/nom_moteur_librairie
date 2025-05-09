@@ -14,6 +14,13 @@ class Vector2:
         """Calculate the norm of the vector (accessible as a property)."""
         return (self.x**2 + self.y**2)**0.5
 
+    def __eq__(self, other: 'Vector2') -> bool:
+        """Check if two vectors are equal."""
+        if isinstance(other, Vector2):
+            return (self.x == other.x) and (self.y == other.y)
+        else:
+            raise TypeError(f"{other} is not a Vector2")
+
     def __repr__(self):
         """Return a string representation of the vector."""
         return f"Vector2({self.x}, {self.y})"
@@ -47,7 +54,7 @@ class Vector2:
         """Multiply the vector by a scalar and return the resulting Vector2."""
         return Vector2(self.x * factor, self.y * factor)
 
-    def multiply_by_matrix(self, matrix: 'Matrix2x2') -> 'Vector2':
+    def multiply_by_matrix(self, matrix) -> 'Vector2':
         """
         Multiply the vector by a 2x2 matrix.
 
@@ -78,8 +85,9 @@ class Vector2:
 
     def normalize(self) -> 'Vector2':
         """
-        Normalize the vector to have a length of 1 while preserving its 
-        direction.
+        Normalize the vector.
+
+        The new vector has the same direction and a length of 1.
         """
         n = self.norm
         if n == 0:
