@@ -88,7 +88,7 @@ class Vector2:
         """
         Normalize the vector.
 
-        The new vector will have a length of 1 while preserving its direction.
+        The new vector has the same direction and a length of 1.
         """
         n = self.norm
         if n == 0:
