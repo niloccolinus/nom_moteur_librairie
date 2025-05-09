@@ -51,7 +51,7 @@ class Triangle:
         if self.right_angled():
             # Sort to make sure the hypothenuse is last
             a, b, c = sorted(self.side_lengths())
-            return ((a * b) / 2)
+            return (a * b) / 2
         a, b, c = self.side_lengths()
         s = (a + b + c) / 2  # semi-perimeter
         return math.sqrt(s * (s - a) * (s - b) * (s - c))
