@@ -1,7 +1,17 @@
+"""Defines a triangle class."""
+
 import math
 
+
 class Triangle:
-    def __init__(self, p1: tuple[float, float], p2: tuple[float, float], p3: tuple[float, float]):
+    """A class to represent a triangle."""
+
+    def __init__(
+        self,
+        p1: tuple[float, float],
+        p2: tuple[float, float],
+        p3: tuple[float, float]
+    ):
         """
         Initialize a triangle with 3 vertices.
         Each point is a tuple (x, y).
@@ -44,12 +54,15 @@ class Triangle:
 
     def right_angled(self) -> bool:
         """
-        Check if the triangle is a right triangle using the Pythagorean theorem.
+        Check if the triangle is a right triangle using Pythagorean theorem.
         """
-        a, b, c = sorted(self.side_lengths()) # sort to make sure the hypothenuse is last
+        # Sort to make sure the hypothenuse is last
+        a, b, c = sorted(self.side_lengths())
         return a ** 2 + b ** 2 == c ** 2
-    
-    def get_vertices(self) -> tuple[tuple[float, float], tuple[float, float], tuple[float, float]]:
+
+    def get_vertices(
+        self
+    ) -> tuple[tuple[float, float], tuple[float, float], tuple[float, float]]:
         """
         Return the three vertices of the triangle.
         """

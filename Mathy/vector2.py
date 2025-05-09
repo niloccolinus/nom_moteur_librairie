@@ -1,7 +1,8 @@
 """Defines a two-vector class."""
 
+
 class Vector2:
-    """A class to represent a bivector."""
+    """A class to represent a 2D vector."""
 
     def __init__(self, x: float | int, y: float | int):
         """Initialize a 2D vector with the given x and y components."""
@@ -65,9 +66,9 @@ class Vector2:
                      base_v2: 'Vector2') -> 'Vector2':
         """
         Implement a change of basis.
-
         Change the vector's basis from the standard basis to a new basis.
         """
+        from Mathy import Matrix2x2
         base_matrix = Matrix2x2(
             base_v1.x, base_v2.x,
             base_v1.y, base_v2.y
@@ -77,7 +78,8 @@ class Vector2:
 
     def normalize(self) -> 'Vector2':
         """
-        Normalize the vector to have a length of 1 while preserving its direction.
+        Normalize the vector to have a length of 1 while preserving its 
+        direction.
         """
         n = self.norm
         if n == 0:

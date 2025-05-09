@@ -65,7 +65,6 @@ class Matrix2x2:
     def solve_system(self, b: 'Vector2') -> 'Vector2':
         """
         Solve a system of linear equations Ax = b.
-
         A is a matrix and b is a vector.
         """
         from Mathy import Vector2
