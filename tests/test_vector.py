@@ -1,8 +1,8 @@
 """Tests for verifying proper Vector functionality."""
 
 import pytest
-from Mathy.vector2 import Vector2
-from Mathy.matrix2x2 import Matrix2x2
+from Mathy import Vector2
+from Mathy import Matrix2x2
 
 
 def test_norm():
