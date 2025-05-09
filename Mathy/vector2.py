@@ -2,7 +2,7 @@
 
 
 class Vector2:
-    """A class to represent a bivector."""
+    """A class to represent a 2D vector."""
 
     def __init__(self, x: float | int, y: float | int):
         """Initialize a 2D vector with the given x and y components."""
@@ -15,7 +15,7 @@ class Vector2:
         return (self.x**2 + self.y**2)**0.5
 
     def __eq__(self, other: 'Vector2') -> bool:
-        """Check if two vectors are equal"""
+        """Check if two vectors are equal."""
         if isinstance(other, Vector2):
             return (self.x == other.x) and (self.y == other.y)
         else:
@@ -60,7 +60,7 @@ class Vector2:
 
         Return the resulting Vector2.
         """
-        from Mathy.matrix2x2 import Matrix2x2
+        from Mathy import Matrix2x2
         if isinstance(matrix, Matrix2x2):
             a = matrix.matrix
             new_x = a[0][0] * self.x + a[0][1] * self.y
@@ -76,7 +76,7 @@ class Vector2:
 
         Change the vector's basis from the standard basis to a new basis.
         """
-        from Mathy.matrix2x2 import Matrix2x2
+        from Mathy import Matrix2x2
         base_matrix = Matrix2x2(
             base_v1.x, base_v2.x,
             base_v1.y, base_v2.y
@@ -86,7 +86,9 @@ class Vector2:
 
     def normalize(self) -> 'Vector2':
         """
-        Normalize the vector to have a length of 1 while preserving its direction.
+        Normalize the vector.
+
+        The new vector will have a length of 1 while preserving its direction.
         """
         n = self.norm
         if n == 0:
