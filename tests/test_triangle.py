@@ -34,8 +34,10 @@ def test_area():
     # Area triangle 1
     assert triangle1.area() == 0.5
     # Area triangle 2
+    # Use isclose to allow for small floating-point errors
     assert math.isclose(triangle2.area(), 1.0)
     # Area triangle 3
+    # Use isclose to allow for small floating-point errors
     assert math.isclose(triangle3.area(), 13.75)
 
 
