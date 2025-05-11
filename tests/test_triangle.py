@@ -13,6 +13,7 @@ triangle3 = Triangle([-2.5, 0], [0, 5.5], [2.5, 0])
 
 
 def test_side_lengths():
+    """Test side_lengths() method."""
     # Lengths triangle 1
     assert triangle1.side_lengths() == (1.0, math.sqrt(2), 1.0)
     # Lengths triangle 2
@@ -22,6 +23,7 @@ def test_side_lengths():
 
 
 def test_perimeter():
+    """Test perimeter() method."""
     # Perimeter triangle 1
     assert triangle1.perimeter() == float(2 + math.sqrt(2))
     # Perimeter triangle 2
@@ -31,6 +33,7 @@ def test_perimeter():
 
 
 def test_area():
+    """Test area() method."""
     # Area triangle 1
     assert triangle1.area() == 0.5
     # Area triangle 2
@@ -42,6 +45,7 @@ def test_area():
 
 
 def test_right_angled():
+    """Test right_angled() method."""
     # Test right-angled triangle 1
     assert triangle1.right_angled() == 1
     # Test right-angled triangle 2
@@ -51,6 +55,7 @@ def test_right_angled():
 
 
 def test_get_vertices():
+    """Test get_vertices() method."""
     # Vertices triangle 1
     assert triangle1.get_vertices() == ([0, 0], [0, 1], [1, 0])
     # Vertices triangle 2
