@@ -15,4 +15,45 @@ Ce répertoire contient la bibliothèque principale du moteur de géométrie.
 
 ## Exemple d'utilisation
 
-*(En cours d'écriture – des exemples seront ajoutés une fois les classes implémentées)*
+Le bloc ci-dessous montre un exemple d'utilisation de la bibliothèque. Il illustre des opérations vectorielles et matricielles, la manipulation d'un triangle, ainsi qu'une démonstration d'affichage avec Pygame.
+
+```python
+from Mathy import Vector2, Matrix2x2, Triangle
+from Renderer import Renderer
+
+# Vector operations
+v1 = Vector2(3, 4)
+v2 = Vector2(1, 2)
+
+v3 = v1.add(v2)
+print(f"v3 = v1 + v2 = {v3}")  # Vector2(4, 6)
+print(f"Norm of v1: {v1.norm:.2f}")  # 5.00
+
+# Matrix operations
+m1 = Matrix2x2(1, 2, 3, 4)
+m2 = Matrix2x2(0, 1, 1, 0)
+
+m3 = m1.prod(m2)
+print(f"m1 * m2 =\n{m3}")
+
+# Solving a linear system Ax = b
+b = Vector2(5, 6)
+solution = m1.solve_system(b)
+print(f"Solution of m1 * x = b is x = {solution}")
+
+# Triangle example
+triangle = Triangle((0, 0), (4, 0), (0, 3))
+print(f"Triangle perimeter: {triangle.perimeter():.2f}")
+print(f"Triangle area: {triangle.area():.2f}")
+print(f"Is the triangle right-angled? {triangle.right_angled()}")
+
+# Rendering a triangle with Pygame (minimal setup)
+renderer = Renderer(400, 300, "Triangle Demo")
+while renderer.running:
+    renderer.handle_events()
+    renderer.clear()
+    renderer.draw_triangle(*triangle.get_vertices(), color=(0, 128, 255), width=2)
+    renderer.draw_text("Triangle Demo", (10, 10), font_size=24)
+    renderer.update()
+    renderer.clock.tick(60)
+renderer.quit()
