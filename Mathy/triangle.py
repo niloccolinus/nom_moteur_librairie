@@ -72,3 +72,43 @@ class Triangle:
         Return the three vertices of the triangle.
         """
         return self.p1, self.p2, self.p3
+
+    def get_edges(
+        self
+    ) -> tuple[tuple[tuple[float, float], tuple[float, float]],
+               tuple[tuple[float, float], tuple[float, float]],
+               tuple[tuple[float, float], tuple[float, float]]]:
+        """
+        Return the three edges of the triangle.
+        """ 
+        return [
+            (self.p1, self.p2),
+            (self.p2, self.p3),
+            (self.p3, self.p1)
+        ]
+
+    def circumcircle(self) -> tuple[tuple[float, float], float]:
+        """
+        Return the circumcenter and circumradius of the triangle.
+        """
+        ax, ay = self.p1
+        bx, by = self.p2
+        cx, cy = self.p3
+
+        d = 2 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
+        if d == 0:
+            return None, float('inf')
+
+        ux = ((ax**2 + ay**2) * (by - cy) + (bx**2 + by**2) * (cy - ay) + (cx**2 + cy**2) * (ay - by)) / d
+        uy = ((ax**2 + ay**2) * (cx - bx) + (bx**2 + by**2) * (ax - cx) + (cx**2 + cy**2) * (bx - ax)) / d
+        r = math.sqrt((ax - ux)**2 + (ay - uy)**2)
+
+        return (ux, uy), r
+
+    def is_point_in_circumcircle(self, point: tuple[float, float]) -> bool:
+        """
+        Check if a point is inside the circumcircle of the triangle.
+        """
+        circumcenter, circumradius = self.circumcircle()
+        norm = math.sqrt((point[0] - circumcenter[0])**2 + (point[1] - circumcenter[1])**2)
+        return norm < circumradius
