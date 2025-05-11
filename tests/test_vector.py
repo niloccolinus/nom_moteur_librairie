@@ -6,6 +6,7 @@ from Mathy import Matrix2x2
 
 
 def test_norm():
+    """Test norm() method."""
     # Norm zero
     assert Vector2(0, 0).norm == 0.0
 
@@ -17,6 +18,7 @@ def test_norm():
 
 
 def test_eq():
+    """Test __eq__() method."""
     # Compare different vectors
     assert Vector2(1, 1) != Vector2(1, -1)
     # Compare same vectors
@@ -27,11 +29,13 @@ def test_eq():
 
 
 def test_repr():
+    """Test __repr__() method."""
     # Repr vector
     assert Vector2(1, 3).__repr__() == "Vector2(1, 3)"
 
 
 def test_add():
+    """Test add() method."""
     # Add zeros
     assert Vector2(0, 0).add(Vector2(0, 0)) == Vector2(0, 0)
 
@@ -47,6 +51,7 @@ def test_add():
 
 
 def test_subtract():
+    """Test subtract() method."""
     # Subtract zeros
     assert Vector2(0, 0).subtract(Vector2(0, 0)) == Vector2(0, 0)
 
@@ -54,7 +59,7 @@ def test_subtract():
     assert Vector2(1, 2).subtract(Vector2(3, -4)) == Vector2(-2, 6)
 
     # Subtract floats
-    assert Vector2(0.5, -1.0).subtract(Vector2(3.5, 5.0)) == Vector2(-3.0, -6.0)
+    assert Vector2(0.5, -1.0).subtract(Vector2(3.5, 5.0)) == Vector2(-3.0, -6.0)  # noqa: E501
 
     # Subtract wrong type
     with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
@@ -62,6 +67,7 @@ def test_subtract():
 
 
 def test_scalar_product():
+    """Test scalar_product() method."""
     # Scalar product of v1 = [1, 1] and v2 = [1, -1]
     assert Vector2(1, 1).scalar_product(Vector2(1, -1)) == 0
     # Use wrong type
@@ -70,6 +76,7 @@ def test_scalar_product():
 
 
 def test_multiply_by_scalar():
+    """Test multiply_by_scalar() method."""
     # Multiply by 0
     assert Vector2(1, 1).multiply_by_scalar(0) == Vector2(0, 0)
     # Multiply by int
@@ -79,19 +86,22 @@ def test_multiply_by_scalar():
 
 
 def test_multiply_by_matrix():
+    """Test multiply_by_matrix() method."""
     # Multiply by matrix
-    assert Vector2(3, -4).multiply_by_matrix(Matrix2x2(2, 3, 4, -1)) == Vector2(-6, 16)
+    assert Vector2(3, -4).multiply_by_matrix(Matrix2x2(2, 3, 4, -1)) == Vector2(-6, 16)  # noqa: E501
     # Multiply by wrong type
     with pytest.raises(TypeError, match=r".* is not a Matrix2x2.*"):
         Vector2(3, -4).multiply_by_matrix(Vector2(2, 3))
 
 
 def test_change_basis():
+    """Test change_basis() method."""
     # Change basis
-    assert Vector2(2, 3).change_basis(Vector2(1, 1), Vector2(1, -1)) == Vector2(2.5, -0.5)
+    assert Vector2(2, 3).change_basis(Vector2(1, 1), Vector2(1, -1)) == Vector2(2.5, -0.5)  # noqa: E501
 
 
 def test_normalize():
+    """Test normalize() method."""
     # Normalize vector
     assert Vector2(1, 0).normalize() == Vector2(1.0, 0.0)
     # Norm == 0
