@@ -14,6 +14,7 @@ class Triangle:
     ):
         """
         Initialize a triangle with 3 vertices.
+
         Each point is a tuple (x, y).
         """
         self.p1 = p1
@@ -21,11 +22,11 @@ class Triangle:
         self.p3 = p3
 
     def side_lengths(self) -> tuple[float, float, float]:
-        """
-        Return the lengths of the triangle's sides (a, b, c) where:
-            a = length between p1 and p2
-            b = length between p2 and p3
-            c = length between p1 and p3
+        """Return the lengths of the triangle's sides (a, b, c).
+
+        a = length between p1 and p2
+        b = length between p2 and p3
+        c = length between p1 and p3
         """
         def distance(pA, pB):
             dx = pA[0] - pB[0]
@@ -38,16 +39,12 @@ class Triangle:
         return a, b, c
 
     def perimeter(self) -> float:
-        """
-        Return the perimeter of the triangle.
-        """
+        """Return the perimeter of the triangle."""
         a, b, c = self.side_lengths()
         return a + b + c
 
     def area(self) -> float:
-        """
-        Return the area of the triangle using Heron's formula.
-        """
+        """Return the area of the triangle using Heron's formula."""
         if self.right_angled():
             # Sort to make sure the hypothenuse is last
             a, b, c = sorted(self.side_lengths())
@@ -57,9 +54,7 @@ class Triangle:
         return math.sqrt(s * (s - a) * (s - b) * (s - c))
 
     def right_angled(self) -> bool:
-        """
-        Check if the triangle is a right triangle using Pythagorean theorem.
-        """
+        """Check if the triangle is right-angled using Pythagorean theorem."""
         # Sort to make sure the hypothenuse is last
         a, b, c = sorted(self.side_lengths())
         # Use isclose to allow for small floating-point errors
@@ -68,9 +63,7 @@ class Triangle:
     def get_vertices(
         self
     ) -> tuple[tuple[float, float], tuple[float, float], tuple[float, float]]:
-        """
-        Return the three vertices of the triangle.
-        """
+        """Return the three vertices of the triangle."""
         return self.p1, self.p2, self.p3
 
     def get_edges(
@@ -78,9 +71,7 @@ class Triangle:
     ) -> tuple[tuple[tuple[float, float], tuple[float, float]],
                tuple[tuple[float, float], tuple[float, float]],
                tuple[tuple[float, float], tuple[float, float]]]:
-        """
-        Return the three edges of the triangle.
-        """ 
+        """Return the three edges of the triangle."""
         return [
             (self.p1, self.p2),
             (self.p2, self.p3),
@@ -88,9 +79,7 @@ class Triangle:
         ]
 
     def circumcircle(self) -> tuple[tuple[float, float], float]:
-        """
-        Return the circumcenter and circumradius of the triangle.
-        """
+        """Return the circumcenter and circumradius of the triangle."""
         ax, ay = self.p1
         bx, by = self.p2
         cx, cy = self.p3
@@ -99,16 +88,17 @@ class Triangle:
         if d == 0:
             return None, float('inf')
 
-        ux = ((ax**2 + ay**2) * (by - cy) + (bx**2 + by**2) * (cy - ay) + (cx**2 + cy**2) * (ay - by)) / d
-        uy = ((ax**2 + ay**2) * (cx - bx) + (bx**2 + by**2) * (ax - cx) + (cx**2 + cy**2) * (bx - ax)) / d
+        ux = ((ax**2 + ay**2) * (by - cy) + (bx**2 + by**2) * (cy - ay)
+              + (cx**2 + cy**2) * (ay - by)) / d
+        uy = ((ax**2 + ay**2) * (cx - bx) + (bx**2 + by**2) * (ax - cx)
+              + (cx**2 + cy**2) * (bx - ax)) / d
         r = math.sqrt((ax - ux)**2 + (ay - uy)**2)
 
         return (ux, uy), r
 
     def is_point_in_circumcircle(self, point: tuple[float, float]) -> bool:
-        """
-        Check if a point is inside the circumcircle of the triangle.
-        """
+        """Check if a point is inside the circumcircle of the triangle."""
         circumcenter, circumradius = self.circumcircle()
-        norm = math.sqrt((point[0] - circumcenter[0])**2 + (point[1] - circumcenter[1])**2)
+        norm = math.sqrt(
+            (point[0] - circumcenter[0])**2 + (point[1] - circumcenter[1])**2)
         return norm < circumradius
