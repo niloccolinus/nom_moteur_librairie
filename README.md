@@ -4,7 +4,7 @@ Ce répertoire contient la bibliothèque principale du moteur de géométrie.
 
 ## Description
 
-`geometry_engine_librairie` regroupe les classes et outils mathématiques de base nécessaires à la manipulation d'objets géométriques simples en deux dimensions (ℝ²).
+`geometry_engine_librairie` regroupe les classes et outils mathématiques de base nécessaires à la manipulation d'objets géométriques simples en deux dimensions (ℝ²). Ces classes peuvent être trouvées dans le répertoire `Mathy`.
 
 ## Contenu actuel
 
