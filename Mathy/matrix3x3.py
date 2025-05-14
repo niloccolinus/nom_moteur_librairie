@@ -32,7 +32,7 @@ class TranslationMatrix3x3(Matrix3x3):
 
 class RotationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 rotation matrix."""
-
+    
     def __init__(self, t):
         super().__init__(
             cos(t), -sin(t), 0,
@@ -40,3 +40,15 @@ class RotationMatrix3x3(Matrix3x3):
             0, 0, 1
         )
         self.t = t
+
+
+class HomothetyMatrix3x3(Matrix3x3):
+    """A class to represent a 3 by 3 homothety matrix."""
+
+    def __init__(self, k):
+        super().__init__(
+            k, 0, 0,
+            0, k, 0,
+            0, 0, 1
+        )
+        self.k = k
