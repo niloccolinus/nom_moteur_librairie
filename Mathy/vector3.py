@@ -1,0 +1,102 @@
+"""Defines a 3D vector class."""
+
+
+class Vector3:
+    """A class to represent a 3D vector."""
+
+    def __init__(self, x: float | int, y: float | int, z: float | int):
+        """Initialize a 2D vector with the given x and y components."""
+        self.x = x
+        self.y = y
+        self.z = z
+
+    @property
+    def norm(self) -> float:
+        """Calculate the norm of the vector (accessible as a property)."""
+        return (self.x**2 + self.y**2 + self.z**2)**0.5
+
+    def __eq__(self, other: 'Vector3') -> bool:
+        """Check if two vectors are equal."""
+        if isinstance(other, Vector3):
+            return ((self.x == other.x) and (self.y == other.y)
+                    and (self.z == other.z))
+        else:
+            raise TypeError(f"{other} is not a Vector3")
+
+    def __repr__(self):
+        """Return a string representation of the vector."""
+        return f"Vector3({self.x}, {self.y}, {self.z})"
+
+    def add(self, other: 'Vector3') -> 'Vector3':
+        """Add two vectors together and return a new Vector3."""
+        if isinstance(other, Vector3):
+            return Vector3(self.x + other.x, self.y + other.y,
+                           self.z + other.z)
+        else:
+            raise TypeError(f"{other} is not a Vector3")
+
+    def subtract(self, other: 'Vector3') -> 'Vector3':
+        """
+        Subtract another vector from the current vector.
+
+        Return the result as a new Vector3.
+        """
+        if isinstance(other, Vector3):
+            return Vector3(self.x - other.x, self.y - other.y,
+                           self.z - other.z)
+        else:
+            raise TypeError(f"{other} is not a Vector3")
+
+    def scalar_product(self, other: 'Vector3') -> float:
+        """Calculate the scalar (dot) product of two vectors."""
+        if isinstance(other, Vector3):
+            return self.x * other.x + self.y * other.y + self.z * other.z
+        else:
+            raise TypeError(f"{other} is not a Vector3")
+
+    def multiply_by_scalar(self, factor: float | int) -> 'Vector3':
+        """Multiply the vector by a scalar and return the resulting Vector3."""
+        return Vector3(self.x * factor, self.y * factor, self.z * factor)
+
+    def multiply_by_matrix(self, matrix) -> 'Vector3':
+        """
+        Multiply the vector by a 3x3 matrix.
+
+        Return the resulting Vector3.
+        """
+        from Mathy import Matrix3x3
+        if isinstance(matrix, Matrix3x3):
+            a = matrix.matrix
+            new_x = a[0][0] * self.x + a[0][1] * self.y + a[0][2] * self.z
+            new_y = a[1][0] * self.x + a[1][1] * self.y + a[1][2] * self.z
+            new_z = a[2][0] * self.x + a[2][1] * self.y + a[2][2] * self.z
+            return Vector3(new_x, new_y, new_z)
+        else:
+            raise TypeError(f"{matrix} is not a Matrix3x3")
+
+    def change_basis(self, base_v1: 'Vector3',
+                     base_v2: 'Vector3', base_v3: 'Vector3') -> 'Vector3':
+        """
+        Implement a change of basis.
+
+        Change the vector's basis from the standard basis to a new basis.
+        """
+        from Mathy import Matrix3x3
+        base_matrix = Matrix3x3(
+            base_v1.x, base_v2.x, base_v3.x,
+            base_v1.y, base_v2.y, base_v3.y,
+            base_v1.z, base_v2.z, base_v3.z
+        )
+        # Solve the system of equations to get the vector in the new basis
+        return base_matrix.solve_system(self)
+
+    def normalize(self) -> 'Vector3':
+        """
+        Normalize the vector.
+
+        The new vector has the same direction and a length of 1.
+        """
+        n = self.norm
+        if n == 0:
+            raise ValueError("Cannot normalize a zero vector.")
+        return Vector3(self.x / n, self.y / n, self.z / n)
