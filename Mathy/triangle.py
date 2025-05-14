@@ -1,7 +1,5 @@
 """Defines a triangle class."""
 
-import math
-
 
 class Triangle:
     """A class to represent a triangle."""
@@ -31,7 +29,7 @@ class Triangle:
         def distance(pA, pB):
             dx = pA[0] - pB[0]
             dy = pA[1] - pB[1]
-            return math.sqrt(dx ** 2 + dy ** 2)
+            return (dx ** 2 + dy ** 2) ** 0.5
 
         a = distance(self.p1, self.p2)
         b = distance(self.p2, self.p3)
@@ -51,14 +49,15 @@ class Triangle:
             return (a * b) / 2
         a, b, c = self.side_lengths()
         s = (a + b + c) / 2  # semi-perimeter
-        return math.sqrt(s * (s - a) * (s - b) * (s - c))
+        return (s * (s - a) * (s - b) * (s - c)) ** 0.5
 
     def right_angled(self) -> bool:
         """Check if the triangle is right-angled using Pythagorean theorem."""
         # Sort to make sure the hypothenuse is last
         a, b, c = sorted(self.side_lengths())
-        # Use isclose to allow for small floating-point errors
-        return math.isclose(a ** 2 + b ** 2, c ** 2, rel_tol=1e-9)
+        epsilon = 1e-9
+        # Allow for small floating-point errors
+        return abs(a ** 2 + b ** 2 - c ** 2) < epsilon
 
     def get_vertices(
         self
@@ -92,13 +91,14 @@ class Triangle:
               + (cx**2 + cy**2) * (ay - by)) / d
         uy = ((ax**2 + ay**2) * (cx - bx) + (bx**2 + by**2) * (ax - cx)
               + (cx**2 + cy**2) * (bx - ax)) / d
-        r = math.sqrt((ax - ux)**2 + (ay - uy)**2)
+        r = ((ax - ux)**2 + (ay - uy)**2) ** 0.5
 
         return (ux, uy), r
 
     def is_point_in_circumcircle(self, point: tuple[float, float]) -> bool:
         """Check if a point is inside the circumcircle of the triangle."""
         circumcenter, circumradius = self.circumcircle()
-        norm = math.sqrt(
-            (point[0] - circumcenter[0])**2 + (point[1] - circumcenter[1])**2)
+        norm = (
+            (point[0] - circumcenter[0])**2 + (point[1] - circumcenter[1])**2
+            ) ** 0.5
         return norm < circumradius
