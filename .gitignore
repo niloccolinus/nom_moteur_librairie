@@ -4,4 +4,4 @@ env/
 build/
 .pytest_cache
 __pycache__/
-/Mathy/__pycache__
+Mathy/__pycache__/
