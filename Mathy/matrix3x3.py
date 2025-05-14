@@ -15,6 +15,33 @@ class Matrix3x3:
     def __repr__(self):
         """Return a string representation of the matrix."""
         return f"Matrix3x3([\n {self.matrix[0]},\n {self.matrix[1]},\n {self.matrix[2]}\n])"  # noqa: E501
+    
+    def __eq__(self, other: 'Matrix3x3') -> bool:
+        """Check if two 3x3 matrices are equal."""
+        if isinstance(other, Matrix3x3):
+            for i in range(3):
+                for j in range(3):
+                    if self.matrix[i][j] != other.matrix[i][j]:
+                        return False
+            return True
+        else:
+            raise TypeError(f"{other} is not a Matrix3x3")
+
+    def add(self, other: 'Matrix3x3') -> 'Matrix3x3':
+        """Add two 3x3 matrices."""
+        if isinstance(other, Matrix3x3):
+            res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+            for i in range(3):
+                for j in range(3):
+                    res[i][j] = self.matrix[i][j] + other.matrix[i][j]
+            # Return a new Matrix3x3 object with the result of the addition
+            return Matrix3x3(
+                res[0][0], res[0][1], res[0][2], 
+                res[1][0], res[1][1], res[1][2], 
+                res[2][0], res[2][1], res[2][2], 
+            )
+        else:
+            raise TypeError(f'{other} is not a Matrix3x3')
 
 
 class TranslationMatrix3x3(Matrix3x3):
