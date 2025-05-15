@@ -36,4 +36,20 @@ def test_repr():
 def test_add():
     """Test add() method."""
     # Add ints
-    assert matrix0.add(matrix1) == Matrix3x3(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    assert matrix0.add(matrix1) == Matrix3x3(
+        1, 2, 3, 
+        4, 5, 6, 
+        7, 8, 9
+    )
+
+
+def test_prod_r():
+    """Test prod_r() method."""
+    # Multiply by zero
+    assert matrix1.prod_r(0).matrix == matrix0.matrix
+    # Multiply by non-zero scalar
+    assert matrix1.prod_r(2).matrix == Matrix3x3(
+        2, 4, 6, 
+        8, 10, 12, 
+        14, 16, 18
+    ).matrix

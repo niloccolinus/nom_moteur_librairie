@@ -43,6 +43,20 @@ class Matrix3x3:
         else:
             raise TypeError(f'{other} is not a Matrix3x3')
 
+    def prod_r(self, scalar: float | int) -> 'Matrix3x3':
+        """Multiply the matrix by a scalar value."""
+        res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        for i in range(3):
+            for j in range(3):
+                res[i][j] = self.matrix[i][j] * scalar
+        # Return a new Matrix3x3 object
+        # with the result of the scalar multiplication
+        return Matrix3x3(
+            res[0][0], res[0][1], res[0][2], 
+            res[1][0], res[1][1], res[1][2], 
+            res[2][0], res[2][1], res[2][2], 
+        )
+
 
 class TranslationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 translation matrix."""
