@@ -43,6 +43,49 @@ class Matrix3x3:
         else:
             raise TypeError(f'{other} is not a Matrix3x3')
 
+    def prod_r(self, scalar: float | int) -> 'Matrix3x3':
+        """Multiply the matrix by a scalar value."""
+        res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+        for i in range(3):
+            for j in range(3):
+                res[i][j] = self.matrix[i][j] * scalar
+        # Return a new Matrix3x3 object
+        # with the result of the scalar multiplication
+        return Matrix3x3(
+            res[0][0], res[0][1], res[0][2], 
+            res[1][0], res[1][1], res[1][2], 
+            res[2][0], res[2][1], res[2][2], 
+        )
+
+    def prod(self, other: 'Matrix3x3') -> 'Matrix3x3':
+        """Multiply two 3x3 matrices."""
+        if isinstance(other, Matrix3x3):
+            a = self.matrix
+            b = other.matrix
+            res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+            for i in range(3):
+                for j in range(3):
+                    for k in range(3):
+                        res[i][j] += a[i][k] * b[k][j]
+            # Return a new Matrix3x3 object
+            # with the result of the matrix multiplication
+            return Matrix3x3(
+                res[0][0], res[0][1], res[0][2],
+                res[1][0], res[1][1], res[1][2],
+                res[2][0], res[2][1], res[2][2]
+            )
+        else:
+            raise TypeError(f'{other} is not a Matrix3x3')
+
+    def determinant(self) -> float:
+        """Calculate the determinant of a 3x3 matrix."""
+        a, b, c = self.matrix[0]
+        d, e, f = self.matrix[1]
+        g, h, i = self.matrix[2]
+        # The determinant of a 3x3 matrix is calculated as 
+        # det = a(ei−fh)−b(di−fg)+c(dh−eg)
+        return a * (e*i - f*h) - b * (d*i - f*g) + c * (d*h - e*g)
+
 
 class TranslationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 translation matrix."""
