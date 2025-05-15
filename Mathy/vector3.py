@@ -65,7 +65,7 @@ class Vector3:
         Return the resulting Vector3.
         """
         from Mathy import Matrix3x3
-        if isinstance(matrix, 'Matrix3x3'):
+        if isinstance(matrix, Matrix3x3):
             a = matrix.matrix
             new_x = a[0][0] * self.x + a[0][1] * self.y + a[0][2] * self.z
             new_y = a[1][0] * self.x + a[1][1] * self.y + a[1][2] * self.z
