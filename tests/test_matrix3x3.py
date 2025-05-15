@@ -30,15 +30,6 @@ matrix2 = Matrix3x3(
     3, 2, 1
 )
 
-# Translation matrix example
-matrix_t = TranslationMatrix3x3(2, 3)
-
-# Rotation matrix example
-matrix_r = RotationMatrix3x3(45)
-
-# Homothety matrix example
-matrix_h = HomothetyMatrix3x3(2)
-
 
 def test_repr():
     """Test __repr__() method."""
@@ -109,3 +100,41 @@ def test_determinant():
         5, 6, 0
     )
     assert abs(m.determinant() - 1) < 1e-6
+
+
+def test_translation_matrix():
+    """Test TranslationMatrix3x3."""
+    t = TranslationMatrix3x3(2, 3)
+    expected = Matrix3x3(
+        1, 0, 2,
+        0, 1, 3,
+        0, 0, 1
+    )
+    assert t == expected
+
+
+def test_rotation_matrix():
+    """Test RotationMatrix3x3 for 45 degrees."""
+    angle_deg = 45
+    theta = deg(angle_deg)
+    r = RotationMatrix3x3(angle_deg)
+    expected = Matrix3x3(
+        cos(theta), -sin(theta), 0,
+        sin(theta), cos(theta), 0,
+        0, 0, 1
+    )
+    for i in range(3):
+        for j in range(3):
+            diff = abs(r.matrix[i][j] - expected.matrix[i][j])
+            assert diff < 1e-6, f"Rotation matrix mismatch at ({i},{j})"
+
+
+def test_homothety_matrix():
+    """Test HomothetyMatrix3x3."""
+    h = HomothetyMatrix3x3(2)
+    expected = Matrix3x3(
+        2, 0, 0,
+        0, 2, 0,
+        0, 0, 1
+    )
+    assert h == expected
