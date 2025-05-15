@@ -70,6 +70,9 @@ class Matrix2x2:
         if isinstance(b, Vector2):
             det = self.determinant()
             a = self.matrix
+            # Check if matrix is invertible
+            if det == 0:
+                raise ValueError("Matrix is not invertible (determinant is zero). Cannot solve system.")  # noqa: E501
             # Calculate the determinant of the system for the x coordinate
             det_x = b.x * a[1][1] - b.y * a[0][1]
             # Calculate the determinant of the system for the y coordinate
