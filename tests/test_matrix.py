@@ -58,10 +58,17 @@ def test_determinant():
 
 def test_solve_system():
     """Test solve_system() method."""
-    # Solve system from first math problem in lab 1
     matrix = Matrix2x2(2, 2, 3, -8)
     vector = Vector2(4, -1)
+
+    # Test normal case (solve system from first math problem in lab 1)
     assert matrix.solve_system(vector) == Vector2(float(15/11), float(7/11))
-    # Pass wrong type
+
+    # Test wrong type input
     with pytest.raises(TypeError, match=r".* is not a Vector2.*"):
-        matrix1.solve_system(4)
+        matrix.solve_system(4)
+
+    # Test non-invertible matrix (determinant == 0)
+    singular_matrix = Matrix2x2(1, 2, 2, 4)  # det = 1*4 - 2*2 = 0
+    with pytest.raises(ValueError, match="Matrix is not invertible"):
+        singular_matrix.solve_system(Vector2(1, 2))
