@@ -1,6 +1,6 @@
 """Tests for verifying proper Matrix functionality."""
 
-from Mathy import Matrix3x3, TranslationMatrix3x3, RotationMatrix3x3, HomothetyMatrix3x3
+from Mathy import Matrix3x3, TranslationMatrix3x3, RotationMatrix3x3, HomothetyMatrix3x3  # noqa: E501
 
 
 # Example matrix 0
@@ -15,6 +15,13 @@ matrix1 = Matrix3x3(
     1, 2, 3,
     4, 5, 6,
     7, 8, 9
+)
+
+# Example matrix 2
+matrix2 = Matrix3x3(
+    9, 8, 7,
+    6, 5, 4,
+    3, 2, 1
 )
 
 # Translation matrix example
@@ -52,4 +59,14 @@ def test_prod_r():
         2, 4, 6, 
         8, 10, 12, 
         14, 16, 18
+    ).matrix
+
+
+def test_prod():
+    """Test prod() method."""
+    # Multiply by matrix
+    assert matrix1.prod(matrix2).matrix == Matrix3x3(
+        30, 24, 18, 
+        84, 69, 54,
+        138, 114, 90
     ).matrix

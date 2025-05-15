@@ -57,6 +57,26 @@ class Matrix3x3:
             res[2][0], res[2][1], res[2][2], 
         )
 
+    def prod(self, other: 'Matrix3x3') -> 'Matrix3x3':
+        """Multiply two 3x3 matrices."""
+        if isinstance(other, Matrix3x3):
+            a = self.matrix
+            b = other.matrix
+            res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+            for i in range(3):
+                for j in range(3):
+                    for k in range(3):
+                        res[i][j] += a[i][k] * b[k][j]
+            # Return a new Matrix3x3 object
+            # with the result of the matrix multiplication
+            return Matrix3x3(
+                res[0][0], res[0][1], res[0][2],
+                res[1][0], res[1][1], res[1][2],
+                res[2][0], res[2][1], res[2][2]
+            )
+        else:
+            raise TypeError(f'{other} is not a Matrix3x3')
+
 
 class TranslationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 translation matrix."""
