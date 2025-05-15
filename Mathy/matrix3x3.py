@@ -1,6 +1,6 @@
 """Defines a 3x3 matrix class."""
 
-from Mathy import cos, sin
+from Mathy import cos, sin, deg
 
 
 class Matrix3x3:
@@ -101,15 +101,21 @@ class TranslationMatrix3x3(Matrix3x3):
 
 
 class RotationMatrix3x3(Matrix3x3):
-    """A class to represent a 3 by 3 rotation matrix."""
+    """
+    A class to represent a 3 by 3 rotation matrix.
+
+    Parameters:
+        theta (float): Angle of rotation in degrees.
+    """
     
-    def __init__(self, t):
+    def __init__(self, t_degrees):
+        theta = deg(t_degrees)  # Convert degrees to radians
         super().__init__(
-            cos(t), -sin(t), 0,
-            sin(t), cos(t), 0,
+            cos(theta), -sin(theta), 0,
+            sin(theta), cos(theta), 0,
             0, 0, 1
         )
-        self.t = t
+        self.t_radians = theta
 
 
 class HomothetyMatrix3x3(Matrix3x3):
