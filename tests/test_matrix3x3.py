@@ -70,3 +70,8 @@ def test_prod():
         84, 69, 54,
         138, 114, 90
     ).matrix
+
+
+def test_determinant():
+    """Test determinant() method."""
+    assert matrix1.determinant() == 0

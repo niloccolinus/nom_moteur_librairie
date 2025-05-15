@@ -77,6 +77,21 @@ class Matrix3x3:
         else:
             raise TypeError(f'{other} is not a Matrix3x3')
 
+    def determinant(self) -> float:
+        """Calculate the determinant of a 3x3 matrix."""
+        a = self.matrix[0][0]
+        b = self.matrix[0][1]
+        c = self.matrix[0][2]
+        d = self.matrix[1][0]
+        e = self.matrix[1][1]
+        f = self.matrix[1][2]
+        g = self.matrix[2][0]
+        h = self.matrix[2][1]
+        i = self.matrix[2][2]
+        # The determinant of a 3x3 matrix is calculated as 
+        # det = a(ei−fh)−b(di−fg)+c(dh−eg)
+        return a * (e*i - f*h) - b * (d*i - f*g) + c * (d*h - e*g)
+
 
 class TranslationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 translation matrix."""
