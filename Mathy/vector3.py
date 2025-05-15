@@ -65,7 +65,7 @@ class Vector3:
         Return the resulting Vector3.
         """
         from Mathy import Matrix3x3
-        if isinstance(matrix, Matrix3x3):
+        if isinstance(matrix, 'Matrix3x3'):
             a = matrix.matrix
             new_x = a[0][0] * self.x + a[0][1] * self.y + a[0][2] * self.z
             new_y = a[1][0] * self.x + a[1][1] * self.y + a[1][2] * self.z
@@ -73,22 +73,6 @@ class Vector3:
             return Vector3(new_x, new_y, new_z)
         else:
             raise TypeError(f"{matrix} is not a Matrix3x3")
-
-    def change_basis(self, base_v1: 'Vector3',
-                     base_v2: 'Vector3', base_v3: 'Vector3') -> 'Vector3':
-        """
-        Implement a change of basis.
-
-        Change the vector's basis from the standard basis to a new basis.
-        """
-        from Mathy import Matrix3x3
-        base_matrix = Matrix3x3(
-            base_v1.x, base_v2.x, base_v3.x,
-            base_v1.y, base_v2.y, base_v3.y,
-            base_v1.z, base_v2.z, base_v3.z
-        )
-        # Solve the system of equations to get the vector in the new basis
-        return base_matrix.solve_system(self)
 
     def normalize(self) -> 'Vector3':
         """
