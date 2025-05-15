@@ -2,7 +2,7 @@
 
 import pytest
 from Mathy import Vector3
-# from Mathy import Matrix3x3
+from Mathy import Matrix3x3
 
 
 def test_norm():
@@ -85,24 +85,15 @@ def test_multiply_by_scalar():
     assert Vector3(1, 1, 1).multiply_by_scalar(0.5) == Vector3(0.5, 0.5, 0.5)
 
 
-# def test_multiply_by_matrix():
-#     """Test multiply_by_matrix() method."""
-#     # Multiply by matrix
-#     vec = Vector3(0, 0, 1)
-#     mat = Matrix3x3(1, 0, 1, 0, 1, 2, 0, 0, 1)
-#     assert vec.multiply_by_matrix(mat) == Vector3(1, 2, 1)
-#     # Multiply by wrong type
-#     with pytest.raises(TypeError, match=r".* is not a Matrix3x3.*"):
-#         Vector3(0, 0, 1).multiply_by_matrix(Vector3(2, 3))
-
-
-# def test_change_basis():
-#     """Test change_basis() method."""
-#     # Change basis
-#     u = Vector3(1, 2, 1)
-#     v = Vector3(1, 1, 1)
-#     w = Vector3(1, 0, 1)
-#     assert Vector3(2, 3, 4).change_basis(u, v, w) == Vector3()
+def test_multiply_by_matrix():
+    """Test multiply_by_matrix() method."""
+    # Multiply by matrix
+    vec = Vector3(0, 0, 1)
+    mat = Matrix3x3(1, 0, 1, 0, 1, 2, 0, 0, 1)
+    assert vec.multiply_by_matrix(mat) == Vector3(1, 2, 1)
+    # Multiply by wrong type
+    with pytest.raises(TypeError, match=r".* is not a Matrix3x3.*"):
+        Vector3(0, 0, 1).multiply_by_matrix(Vector3(1, 1, 1))
 
 
 def test_normalize():
