@@ -107,3 +107,9 @@ def test_normalize():
     # Norm == 0
     with pytest.raises(ValueError, match=r"Cannot normalize a zero vector.*"):
         Vector2(0, 0).normalize()
+
+
+def test_homogenize():
+    """Test homogenize() method."""
+    from Mathy import Vector3
+    assert Vector2(3, -4).homogenize() == Vector3(3, -4, 1)
