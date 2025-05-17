@@ -9,7 +9,12 @@ Ce répertoire contient la bibliothèque principale du moteur de géométrie.
 ## Contenu actuel
 
 - `Vector2` : représente un point ou un vecteur dans ℝ², avec des opérations élémentaires (addition, soustraction, produit scalaire, norme, etc.).
+- `Vector3` : représente un vecteur homogène (x, y, w), utilisé pour manipuler des coordonnées homogènes dans ℝ² (par exemple pour les transformations géométriques).
 - `Matrix2x2` : représente une matrice 2×2, utilisée pour les transformations linéaires et les calculs de produits matriciels.
+- `Matrix3x3` : classe de base pour représenter une matrice 3×3, utilisée pour les transformations homogènes. Trois classes filles héritent de cette classe : 
+  - `TranslationMatrix3x3` : génère une matrice de translation à partir d’un vecteur de déplacement (x, y).
+  - `RotationMatrix3x3` : génère une matrice de rotation pour un angle donné (en degrés).
+  - `HomothetyMatrix3x3` : génère une matrice d’homothétie pour une mise à l’échelle selon un facteur donné.
 - `Triangle` : représente un triangle défini par trois sommets, avec des méthodes pour calculer le périmètre, l'aire, calculer le cercle circonscrit et son rayon et vérifier si le triangle est rectangle.
 - `Renderer` : classe dédiée à l'affichage graphique avec Pygame, permettant de dessiner des objets géométriques comme des points, des segments, des triangles, des cercles et du texte.
 
