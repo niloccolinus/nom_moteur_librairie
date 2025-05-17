@@ -19,6 +19,23 @@ Ce répertoire contient la bibliothèque principale du moteur de géométrie.
 - `Triangle` : représente un triangle défini par trois sommets, avec des méthodes pour calculer le périmètre, l'aire, calculer le cercle circonscrit et son rayon et vérifier si le triangle est rectangle.
 - `Renderer` : classe dédiée à l'affichage graphique avec Pygame, permettant de dessiner des objets géométriques comme des points, des segments, des triangles, des cercles et du texte.
 
+## Tests
+
+Les tests unitaires concernant les classes ci-dessus se trouvent dans le répertoire `tests`.  
+
+Ce projet utilise la bibliothèque `pytest` pour les tests. Assurez-vous d’avoir suivi les instructions d’installation à la racine du projet ([README.md](https://github.com/niloccolinus/geometry_engine/blob/main/README.md)) pour que toutes les dépendances soient disponibles.
+
+Si vous souhaitez lancer un fichier de test en particulier, vous pouvez exécuter la commande `pytest` suivie du nom/chemin du fichier. Par exemple :
+```console
+pytest geometry_engine_librairie\tests\test_matrix.py
+```
+
+Pour lancer tous les tests en même temps, vous pouvez également vous placer dans le dossier `tests` et exécuter simplement la commande :
+
+```console
+pytest
+```
+
 ## Exemple d'utilisation
 
 Le bloc ci-dessous montre un exemple d'utilisation de la bibliothèque. Il illustre des opérations vectorielles et matricielles, la manipulation d'un triangle, ainsi qu'une démonstration d'affichage avec Pygame.
