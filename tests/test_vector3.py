@@ -1,8 +1,7 @@
 """Tests for verifying proper Vector functionality."""
 
 import pytest
-from Mathy import Vector3
-from Mathy import Matrix3x3
+from Mathy import Vector3, HomogeneousVector3, Matrix3x3
 
 
 def test_norm():
@@ -103,3 +102,8 @@ def test_normalize():
     # Norm == 0
     with pytest.raises(ValueError, match=r"Cannot normalize a zero vector.*"):
         Vector3(0, 0, 0).normalize()
+
+
+def test_homogeneous_vector3():
+    """Test HomogeneousVector3 class."""
+    assert HomogeneousVector3(1, 2) == Vector3(1, 2, 1)
