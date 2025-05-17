@@ -5,7 +5,7 @@ class Vector3:
     """A class to represent a 3D vector."""
 
     def __init__(self, x: float | int, y: float | int, z: float | int):
-        """Initialize a 2D vector with the given x and y components."""
+        """Initialize a 3D vector with the given x and y components."""
         self.x = x
         self.y = y
         self.z = z
@@ -84,3 +84,17 @@ class Vector3:
         if n == 0:
             raise ValueError("Cannot normalize a zero vector.")
         return Vector3(self.x / n, self.y / n, self.z / n)
+
+
+class HomogeneousVector3(Vector3):
+    """
+    A class to represent a vector in homogeneous coordinates.
+
+    The projective space considered here is the projective plane.
+    """
+
+    def __init__(self, x, y):
+        """Initialize a Vector3 in homogeneous coordinates."""
+        super().__init__(x, y, 1)
+        self.x = x
+        self.y = y
