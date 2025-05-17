@@ -94,3 +94,8 @@ class Vector2:
         if n == 0:
             raise ValueError("Cannot normalize a zero vector.")
         return Vector2(self.x / n, self.y / n)
+
+    def homogenize(self):
+        """Convert the vector to a 3D homogeneous vector."""
+        from Mathy import HomogeneousVector3
+        return HomogeneousVector3(self.x, self.y)
