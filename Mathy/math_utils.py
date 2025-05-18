@@ -16,20 +16,22 @@ def deg(x):
 
 
 def sin(x):
-    """Use Taylor Expansion to approximate sin x"""
-    k = 0
+    """Approximate sin(x) for any x (radians) using Taylor expansion"""
+    x = x % (2 * pi)
+    if x > pi:
+        x -= 2 * pi 
     sinx = 0
-    while x >= pi:
-        x -= pi
-    if pi > x > pi / 2:
-        x = pi - x
-    while k < 15:
+    for k in range(15):
         sinx += (-1)**k * x**(2*k + 1) / factorial(2*k + 1)
-        k += 1
     return sinx
 
 
 def cos(x):
-    """Use sin x to calculate cos x"""
-    cosx = sin(pi / 2 - x)
+    """Approximate cos(x) for any x (radians) using Taylor expansion"""
+    x = x % (2 * pi)
+    if x > pi:
+        x -= 2 * pi 
+    cosx = 0
+    for k in range(15):
+        cosx += (-1)**k * x**(2*k) / factorial(2*k)
     return cosx
