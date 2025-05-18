@@ -27,6 +27,8 @@ class Matrix2x2:
 
     def prod_r(self, scalar: float | int) -> 'Matrix2x2':
         """Multiply the matrix by a scalar value."""
+        if not isinstance(scalar, (int, float)):
+            raise TypeError(f'{scalar} is not a scalar')
         res = [[0, 0], [0, 0]]
         for i in range(2):
             for j in range(2):

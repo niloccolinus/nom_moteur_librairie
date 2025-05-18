@@ -33,8 +33,9 @@ matrix2 = Matrix3x3(
 
 def test_repr():
     """Test __repr__() method."""
-    assert matrix0.__repr__() == "Matrix3x3([\n [0, 0, 0],\n [0, 0, 0],\n [0, 0, 0]\n])"  # noqa: E501
-
+    assert matrix0.__repr__() == "Matrix3x3([\n [0, 0, 0],\n [0, 0, 0],\n [0, 0, 0]\n])"
+    assert matrix1.__repr__() == "Matrix3x3([\n [1, 2, 3],\n [4, 5, 6],\n [7, 8, 9]\n])"
+    assert matrix2.__repr__() == "Matrix3x3([\n [9, 8, 7],\n [6, 5, 4],\n [3, 2, 1]\n])"
 
 def test_eq():
     """Test __eq__() method."""
@@ -74,6 +75,10 @@ def test_prod_r():
         14, 16, 18
     )
     assert result == expected
+
+    # Invalid type
+    with pytest.raises(TypeError):
+        matrix1.prod_r("not a number")
 
 
 def test_prod():

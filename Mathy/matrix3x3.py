@@ -45,6 +45,8 @@ class Matrix3x3:
 
     def prod_r(self, scalar: float | int) -> 'Matrix3x3':
         """Multiply the matrix by a scalar value."""
+        if not isinstance(scalar, (int, float)):
+            raise TypeError(f'{scalar} is not a scalar')
         res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         for i in range(3):
             for j in range(3):
