@@ -88,6 +88,24 @@ class Matrix3x3:
         # det = a(ei−fh)−b(di−fg)+c(dh−eg)
         return a * (e*i - f*h) - b * (d*i - f*g) + c * (d*h - e*g)
 
+    def round(self, decimal: int) -> 'Matrix3x3':
+        """Return a rounded approximation of the matrix's contents."""
+        if (decimal >= 0 and isinstance(decimal, int)):
+            res = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+            for i in range(3):
+                for j in range(3):
+                    res[i][j] = round(self.matrix[i][j], decimal)
+            return Matrix3x3(
+                    res[0][0], res[0][1], res[0][2],
+                    res[1][0], res[1][1], res[1][2],
+                    res[2][0], res[2][1], res[2][2],
+                )
+        else:
+            if (decimal < 0):
+                raise ValueError(f'{decimal} should not be negative.')
+            if not isinstance(decimal, int):
+                raise TypeError(f'{decimal} should be an int.')
+
 
 class TranslationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 translation matrix."""
