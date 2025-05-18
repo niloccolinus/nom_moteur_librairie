@@ -10,7 +10,7 @@ Ce répertoire contient la bibliothèque principale du moteur de géométrie.
 
 - `Vector2` : représente un point ou un vecteur dans ℝ², avec des opérations élémentaires (addition, soustraction, produit scalaire, norme, etc.).
 - `Vector3` : représente un vecteur dans ℝ³. Une classe fille qui hérite de cette classe peut être utilisée pour manipuler des coordonnées homogènes dans ℝ² (par exemple pour les transformations géométriques) : 
- - `HomogeneousVector3` : génère un vecteur en coordonnées homogènes à partir des coordonnées (x, y) d'un vecteur dans ℝ².
+  - `HomogeneousVector3` : génère un vecteur en coordonnées homogènes à partir des coordonnées (x, y) d'un vecteur dans ℝ².
 - `Matrix2x2` : représente une matrice 2×2, utilisée pour les transformations linéaires et les calculs de produits matriciels.
 - `Matrix3x3` : classe de base pour représenter une matrice 3×3, utilisée pour les transformations homogènes. Trois classes filles héritent de cette classe : 
   - `TranslationMatrix3x3` : génère une matrice de translation à partir d’un vecteur de déplacement (x, y).
