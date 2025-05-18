@@ -30,6 +30,13 @@ matrix2 = Matrix3x3(
     3, 2, 1
 )
 
+# Example matrix 3
+matrix3 = Matrix3x3(
+    1, 1, 1,
+    1, 1, 1,
+    1, 1, 1,
+)
+
 
 def test_repr():
     """Test __repr__() method."""
@@ -105,6 +112,18 @@ def test_determinant():
         5, 6, 0
     )
     assert abs(m.determinant() - 1) < 1e-6
+
+
+def test_round():
+    """Test roun() method."""
+    assert matrix3.prod_r(10**(-10)).round(9) == matrix0
+    assert matrix3.prod_r(10**(-9)).round(9) != matrix0
+    # Invalid decimal : wrong type
+    with pytest.raises(TypeError):
+        matrix3.round("invalid")
+    # Invalid decimal : wrong value
+    with pytest.raises(ValueError):
+        matrix3.round(-1)
 
 
 def test_translation_matrix():
