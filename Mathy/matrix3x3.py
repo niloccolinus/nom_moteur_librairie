@@ -15,7 +15,7 @@ class Matrix3x3:
     def __repr__(self):
         """Return a string representation of the matrix."""
         return f"Matrix3x3([\n {self.matrix[0]},\n {self.matrix[1]},\n {self.matrix[2]}\n])"  # noqa: E501
-    
+
     def __eq__(self, other: 'Matrix3x3') -> bool:
         """Check if two 3x3 matrices are equal."""
         if isinstance(other, Matrix3x3):
@@ -36,9 +36,9 @@ class Matrix3x3:
                     res[i][j] = self.matrix[i][j] + other.matrix[i][j]
             # Return a new Matrix3x3 object with the result of the addition
             return Matrix3x3(
-                res[0][0], res[0][1], res[0][2], 
-                res[1][0], res[1][1], res[1][2], 
-                res[2][0], res[2][1], res[2][2], 
+                res[0][0], res[0][1], res[0][2],
+                res[1][0], res[1][1], res[1][2],
+                res[2][0], res[2][1], res[2][2],
             )
         else:
             raise TypeError(f'{other} is not a Matrix3x3')
@@ -54,9 +54,9 @@ class Matrix3x3:
         # Return a new Matrix3x3 object
         # with the result of the scalar multiplication
         return Matrix3x3(
-            res[0][0], res[0][1], res[0][2], 
-            res[1][0], res[1][1], res[1][2], 
-            res[2][0], res[2][1], res[2][2], 
+            res[0][0], res[0][1], res[0][2],
+            res[1][0], res[1][1], res[1][2],
+            res[2][0], res[2][1], res[2][2],
         )
 
     def prod(self, other: 'Matrix3x3') -> 'Matrix3x3':
@@ -84,7 +84,7 @@ class Matrix3x3:
         a, b, c = self.matrix[0]
         d, e, f = self.matrix[1]
         g, h, i = self.matrix[2]
-        # The determinant of a 3x3 matrix is calculated as 
+        # The determinant of a 3x3 matrix is calculated as
         # det = a(ei−fh)−b(di−fg)+c(dh−eg)
         return a * (e*i - f*h) - b * (d*i - f*g) + c * (d*h - e*g)
 
@@ -113,6 +113,7 @@ class TranslationMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 translation matrix."""
 
     def __init__(self, a, b):
+        """Initialize a translation matrix."""
         super().__init__(
             1, 0, a,
             0, 1, b,
@@ -129,8 +130,9 @@ class RotationMatrix3x3(Matrix3x3):
     Parameters:
         theta (float): Angle of rotation in degrees.
     """
-    
+
     def __init__(self, t_degrees):
+        """Initialize a rotation matrix."""
         theta = deg(t_degrees)  # Convert degrees to radians
         super().__init__(
             cos(theta), -sin(theta), 0,
@@ -144,6 +146,7 @@ class HomothetyMatrix3x3(Matrix3x3):
     """A class to represent a 3 by 3 homothety matrix."""
 
     def __init__(self, k):
+        """Initialize a homotethy matrix."""
         super().__init__(
             k, 0, 0,
             0, k, 0,
